@@ -5,14 +5,13 @@ public class LinkedList<T> {
 	int size; 
 	
 	private class Node{
-		Node _prev; 
+	
 		Node _next; 
-		T node; 
+		T data; 
 		
-	public Node(Node p, T item, Node n) {
-		_prev = p; 
+	public Node(T item, Node n) {
 		_next = n; 
-		node = item; 
+		data = item; 
 		}
 	
 	}
@@ -30,14 +29,34 @@ public class LinkedList<T> {
 		return this._head._next == this._tail; 
 	}
 	
+	// clear method
 	public void clear() {
 		this._head._next = this._tail;
-		this._tail._prev = this._head; 
+		 
 	}
 	
+	// return the size 
 	public int size() {
 		return this.size;
 	}
+	
+	
+	// add the element after head
+	public void addToFront(T element) {
+		_head._next = new Node(element, _head._next); 
+		size++; 
+	
+	}
+	public boolean contains(T target) {
+		
+		for(T n: LinkedList) {
+			if(n.equals(target)) return true; 
+		}
+		return false; 
+	}
+	
+	
+	
 	
 	
 	
