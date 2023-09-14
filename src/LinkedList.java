@@ -90,10 +90,56 @@ public class LinkedList<T> {
 				return true;
 			}
 		}
+		size--; 
 		return false;
 	}
 	
+	public String toString() {
+		return toString(_head._next);	
+	}
 	
+	private String toString(Node n) {
+		String result; 
+		if(n.equals(_tail)) return " ";
+		result = "" + n.data +", "; 
+		return (result + toString(n._next));
+	}
+	
+	//add to back 
+	public void addToBack(T target){
+		previous(_tail.data)._next = new Node (target, _tail);
+	}
+	
+	// Last metod 
+	private Node last(Node n, int index) {
+		if (index==(size-1)) return n;
+		return last(n._next, index+1);
+	}
+	private Node last() {
+	if (isEmpty()) return null;
+	return last(_head._next, 0);
+	}
+	public void reverse() {
+		reverse(_head._next, last(), 0);
+	}
+	private void reverse(Node front, Node back, int i) {
+		//base case
+		if(!(i == size/2)){
+			
+		//Making place holders
+		T val1 = back.data;
+		T val2 = front.data;
+		
+		//Removing originals
+		remove(back.data);
+		remove(front.data);
+		
+		//Swapping the values
+		addToBack(val1);
+		addToFront(val2);
+		reverse(front._next, previous(back.data), ++i);
+		}
+	}
 	
 	
 	
