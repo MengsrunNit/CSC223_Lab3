@@ -1,14 +1,20 @@
 package Test;
 
+
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class LinkedListTest {
+import utilities.LinkedList; 
 
-	@Test
-	void test() {
-		fail("Not yet implemented");
+class LinkedListTest {
+	
+	public LinkedList<Integer> build(){
+		LinkedList<Integer> list = new LinkedList<Integer>(); 
+		
 	}
 
+	
 }
+
