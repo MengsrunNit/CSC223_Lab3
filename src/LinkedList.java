@@ -1,8 +1,8 @@
 
 public class LinkedList<T> {
-	Node _head; 
-	Node _tail; 
-	int size; 
+	protected Node _head; 
+	protected Node _tail; 
+	protected int size; 
 	
 	private class Node{
 	
@@ -16,7 +16,6 @@ public class LinkedList<T> {
 	
 	}
 	
-	
 	//constrtor for linkedList
 	public LinkedList() {
 		this._head= null; 
@@ -25,7 +24,7 @@ public class LinkedList<T> {
 	}
 	
 	//method isEmpthy 
-	public boolean isEmpthy() {
+	public boolean isEmpty() {
 		return this._head._next == this._tail; 
 	}
 	
@@ -48,11 +47,50 @@ public class LinkedList<T> {
 	
 	}
 	public boolean contains(T target) {
+		// check if the target is null
+		if(target.equals(null)) return false; 
+	
+		return contains(target, _head._next); // call helper method
+	}
+	private boolean contains(T target, Node n ) {
+		// base case node search is tail 
+		if(n.equals(_tail)) return false; 
 		
-		for(T n: LinkedList) {
-			if(n.equals(target)) return true; 
+		//if target equals Node 
+		if (n.data.equals(target)) {
+			return true; 
 		}
-		return false; 
+		
+		// call the recursive 
+		return contains(target, n._next);
+		
+	}
+	
+	// private method 
+	private Node previous(T target) {
+		if (!contains(target)) return null;
+		return previous(target, _head._next);	
+		}
+	// helper method Previous
+	private Node previous(T target, Node n) {
+		if (n.data.equals(target)) return n;
+		return previous(target, n._next);
+	}
+	
+	public boolean remove(T target) {
+		//checking for containment before looping
+		if (!(contains(target))) return false;
+		
+		//loops through, checking for equality
+		for (Node n = _head._next; n != _tail; n = n._next){
+			if (n.data.equals(target)) {
+				
+				//sets the previous nodes next to the node after target, excluding target
+				previous(n.data)._next = n._next;
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	
