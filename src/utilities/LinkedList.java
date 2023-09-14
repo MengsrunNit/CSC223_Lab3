@@ -1,3 +1,4 @@
+package utilities;
 
 public class LinkedList<T> {
 	protected Node _head; 
@@ -13,7 +14,7 @@ public class LinkedList<T> {
 		_next = n; 
 		data = item; 
 		}
-	
+
 	}
 	
 	//constrtor for linkedList
