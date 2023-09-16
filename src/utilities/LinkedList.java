@@ -19,14 +19,14 @@ public class LinkedList<T> {
 	
 	//constrtor for linkedList
 	public LinkedList() {
-		this._head= null; 
-		this._tail = null; 
+		this._head= new Node(null, _tail); 
+		this._tail = new Node(null,null); 
 		this.size = 0;
 	}
 	
-	//method isEmpthy 
+	//method isEmpty 
 	public boolean isEmpty() {
-		return this._head._next == this._tail; 
+		return (this._head._next == this._tail); 
 	}
 	
 	// clear method
@@ -43,7 +43,11 @@ public class LinkedList<T> {
 	
 	// add the element after head
 	public void addToFront(T element) {
-		_head._next = new Node(element, _head._next); 
+//		if (isEmpty()) {
+//			Node n = new Node(element, _tail);
+//			_head._next=n;
+//		}
+		this._head._next = new Node(element, _head._next); 
 		size++; 
 	
 	}
@@ -108,18 +112,24 @@ public class LinkedList<T> {
 	
 	//add to back 
 	public void addToBack(T target){
-		previous(_tail.data)._next = new Node (target, _tail);
+		last()._next = new Node (target, _tail);
+		//previous(_tail.data)._next = new Node (target, _tail);
+		size++;
 	}
 	
 	// Last metod 
-	private Node last(Node n, int index) {
-		if (index==(size-1)) return n;
-		return last(n._next, index+1);
-	}
+	
 	private Node last() {
 	if (isEmpty()) return null;
 	return last(_head._next, 0);
 	}
+	
+	private Node last(Node n, int index) {
+		if (index==(size-1)) return n;
+		return last(n._next, index+1);
+	}
+	
+	
 	public void reverse() {
 		reverse(_head._next, last(), 0);
 	}
