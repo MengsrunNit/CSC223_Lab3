@@ -72,13 +72,13 @@ public class LinkedList<T> {
 	}
 	
 	// private method 
-	private Node previous(T target) {
+	public Node previous(T target) {
 		if (!contains(target)) return null;
-		return previous(target, _head._next);	
+		return previous(target, _head);	
 		}
 	// helper method Previous
 	private Node previous(T target, Node n) {
-		if (n.data.equals(target)) return n;
+		if (n._next.data.equals(target)) return n;
 		return previous(target, n._next);
 	}
 	
@@ -87,15 +87,15 @@ public class LinkedList<T> {
 		if (!(contains(target))) return false;
 		
 		//loops through, checking for equality
-		for (Node n = _head._next; n != _tail; n = n._next){
+		for (Node n = _head._next; n != _tail; n=n._next){
 			if (n.data.equals(target)) {
 				
 				//sets the previous nodes next to the node after target, excluding target
-				previous(n.data)._next = n._next;
+				previous(n.data)._next= n._next;
+				size--;
 				return true;
 			}
 		}
-		size--; 
 		return false;
 	}
 	
