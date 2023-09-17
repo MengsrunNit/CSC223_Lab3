@@ -90,8 +90,6 @@ class LinkedListTest {
 	}
 	@Test
 	void toStringTest() {
-		LinkedList<Integer> list= build();
-
 		
 	}
 	@Test
