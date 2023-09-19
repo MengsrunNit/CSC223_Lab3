@@ -95,6 +95,11 @@ public class LinkedList<T> {
 				size--;
 				return true;
 			}
+		//we could use previous method if we can figure out the solution to the same elements problem.
+		//previous(target)._next=previous(target)._next._next;
+		//size--;
+		//return true;
+		
 		}
 		return false;
 	}
@@ -117,7 +122,7 @@ public class LinkedList<T> {
 		size++;
 	}
 	
-	// Last metod 
+	// Last method 
 	
 	private Node last() {
 	if (isEmpty()) return null;
@@ -128,7 +133,6 @@ public class LinkedList<T> {
 		if (index==(size-1)) return n;
 		return last(n._next, index+1);
 	}
-	
 	
 	public void reverse() {
 		reverse(_head._next, last(), 0);
@@ -142,12 +146,9 @@ public class LinkedList<T> {
 		T val2 = front.data;
 		
 		//Removing originals
-		remove(back.data);
-		remove(front.data);
-		
+		back.data= val2;
+		front.data = val1;
 		//Swapping the values
-		addToBack(val1);
-		addToFront(val2);
 		reverse(front._next, previous(back.data), ++i);
 		}
 	}

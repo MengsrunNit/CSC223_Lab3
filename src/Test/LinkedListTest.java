@@ -87,6 +87,7 @@ class LinkedListTest {
 		assertTrue (list.contains(1));
 		list.clear();
 		assertFalse (list.remove(1));
+		assertTrue (list.isEmpty());
 	}
 	@Test
 	void toStringTest() {
@@ -94,12 +95,17 @@ class LinkedListTest {
 	}
 	@Test
 	void addTobackTest() {
-		
+		LinkedList<Integer> list= build();
 	}
 	@Test
 	void reverseTest() {
-		
+		LinkedList<Integer> list= build();
+		System.out.println(list);
+		list.reverse();
+		System.out.println(list);
 	}
+	
+	
 	
 }
 
