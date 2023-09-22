@@ -1,7 +1,5 @@
 package utilities;
-
 import java.util.Comparator;
-
 public class LinkedEquivalenceClass<T> {
 	protected T _canonical;
 	protected Comparator<T> _comparator;
@@ -16,7 +14,7 @@ public class LinkedEquivalenceClass<T> {
 		return _canonical;
 	}
 	public boolean isEmpty(){
-		return _rest.isEmpty() && _canonical==null;
+		return (_rest.isEmpty() && _canonical==null);
 	}
 	public void clear() {
 		_canonical=null;
@@ -30,35 +28,40 @@ public class LinkedEquivalenceClass<T> {
 	}
 	public boolean add(T element) {
 		if (isEmpty()) {
-			_canonical=element;
+			this._canonical=element;
 			return true;
 		}
-		if (_comparator.compare(_canonical,element)==0) {
-			_rest.addToBack(element);
+		if (belongs(element)) {
+			_rest.addToFront(element);
 			return true;
 		}
 		return false;
 	}
-	// This is likely wrong
 	public boolean contains(T target) {
 		return _rest.contains(target);
 	}
 	public boolean belongs(T target) {
-		if(target.equals(_canonical)) return true;
-		return false;
+		return (_comparator.compare(_canonical, target)==0);
+		
 	}
 	public boolean remove(T target) {
 		return _rest.remove(target);
 	}
-	//this is probably also wrong
 	public boolean removeCanonical(){
 		_canonical=null;
 		return true;
 	}
 	public boolean demoteAndSetCanonical(T element) {
-		
+		if(belongs(element)) {
+			_canonical=element;
+			return true;
+		}
+		_rest.clear();
+		_canonical=element;
+		return false;
 	}
+	
 	public String toString() {
-		return "" + _canonical + "|" + _rest.toString();
+		return "" + _canonical.toString() + "|" + _rest.toString();
 	}
 }

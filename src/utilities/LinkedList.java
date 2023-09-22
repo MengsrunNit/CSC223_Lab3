@@ -43,10 +43,7 @@ public class LinkedList<T> {
 	
 	// add the element after head
 	public void addToFront(T element) {
-//		if (isEmpty()) {
-//			Node n = new Node(element, _tail);
-//			_head._next=n;
-//		}
+
 		this._head._next = new Node(element, _head._next); 
 		size++; 
 	
