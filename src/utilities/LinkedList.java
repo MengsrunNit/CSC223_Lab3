@@ -1,41 +1,42 @@
+
 package utilities;
+import java.util.*;
 
 public class LinkedList<T> {
-	protected Node _head; 
-	protected Node _tail; 
-	protected int size; 
+	protected Node _head;
+	protected Node _tail;
+	protected int size;
 	
 	private class Node{
 	
-		Node _next; 
-		T data; 
+		Node _next;
+		T data;
 		
 	public Node(T item, Node n) {
-		_next = n; 
-		data = item; 
+		_next = n;
+		data = item;
 		}
-
 	}
 	
 	//constrtor for linkedList
 	public LinkedList() {
-		this._head= new Node(null, _tail); 
-		this._tail = new Node(null,null); 
+		this._tail = new Node(null,null);
+		this._head= new Node(null, _tail);
 		this.size = 0;
 	}
 	
-	//method isEmpty 
+	//method isEmpty
 	public boolean isEmpty() {
-		return (this._head._next == this._tail); 
+		return (_head._next==_tail);
 	}
 	
 	// clear method
 	public void clear() {
 		this._head._next = this._tail;
-		 
+		
 	}
 	
-	// return the size 
+	// return the size
 	public int size() {
 		return this.size;
 	}
@@ -43,32 +44,31 @@ public class LinkedList<T> {
 	
 	// add the element after head
 	public void addToFront(T element) {
-
-		this._head._next = new Node(element, _head._next); 
-		size++; 
+		this._head._next = new Node(element, _head._next);
+		size++;
 	
 	}
 	public boolean contains(T target) {
 		// check if the target is null
-		if(target.equals(null)) return false; 
+		if(target.equals(null)) return false;
 	
 		return contains(target, _head._next); // call helper method
 	}
 	private boolean contains(T target, Node n ) {
-		// base case node search is tail 
-		if(n.equals(_tail)) return false; 
+		// base case node search is tail
+		if(n == _tail) return false;
 		
-		//if target equals Node 
+		//if target equals Node
 		if (n.data.equals(target)) {
-			return true; 
+			return true;
 		}
 		
-		// call the recursive 
+		// call the recursive
 		return contains(target, n._next);
 		
 	}
 	
-	// private method 
+	// private method
 	private Node previous(T target) {
 		if (!contains(target)) return null;
 		return previous(target, _head);	
@@ -106,20 +106,20 @@ public class LinkedList<T> {
 	}
 	
 	private String toString(Node n) {
-		String result; 
+		String result;
 		if(n.equals(_tail)) return " ";
-		result = "" + n.data +", "; 
+		result = " " + n.data + ", ";
 		return (result + toString(n._next));
 	}
 	
-	//add to back 
+	//add to back
 	public void addToBack(T target){
 		last()._next = new Node (target, _tail);
 		//previous(_tail.data)._next = new Node (target, _tail);
 		size++;
 	}
 	
-	// Last method 
+	// Last method
 	
 	private Node last() {
 	if (isEmpty()) return null;
@@ -149,13 +149,4 @@ public class LinkedList<T> {
 		reverse(front._next, previous(back.data), ++i);
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

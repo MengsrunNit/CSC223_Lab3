@@ -23,15 +23,16 @@ public class LinkedEquivalenceClass<T> {
 	public void clearNonCanonical() {
 		_rest.clear();
 	}
+	//different
 	public int size() {
 		return _rest.size();
 	}
 	public boolean add(T element) {
-		if (isEmpty()) {
+		if (isEmpty() || _canonical==null) {
 			this._canonical=element;
 			return true;
 		}
-		if (belongs(element)) {
+		else if (belongs(element)) {
 			_rest.addToFront(element);
 			return true;
 		}
@@ -41,7 +42,8 @@ public class LinkedEquivalenceClass<T> {
 		return _rest.contains(target);
 	}
 	public boolean belongs(T target) {
-		return (_comparator.compare(_canonical, target)==0);
+		if (_comparator.compare(_canonical, target)==0) return true;
+		return false;
 		
 	}
 	public boolean remove(T target) {
